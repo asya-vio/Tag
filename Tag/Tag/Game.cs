@@ -9,7 +9,7 @@ namespace Tag
     class Game
     {
         public readonly int Counter; //кол-во ячеек
-        private readonly int BoardSize;
+        private readonly int boardSize;
         public List<List<int>> GameBoard;
         public int[][] ValueLocation;
         //I - строка, J - столбец
@@ -25,14 +25,14 @@ namespace Tag
             }
 
             this.Counter = counter;
-            this.BoardSize = (int)Math.Sqrt(Counter);
+            this.boardSize = (int)Math.Sqrt(Counter);
 
             this.GameBoard = new List<List<int>>();
-            for (int i = 0; i < BoardSize; i++)
+            for (int i = 0; i < boardSize; i++)
                 GameBoard.Add(new List<int>());
 
-            for (int i = 0; i < BoardSize; i++)
-                for (int j = 0; j < BoardSize; j++)
+            for (int i = 0; i < boardSize; i++)
+                for (int j = 0; j < boardSize; j++)
                     GameBoard[i].Add(-1);
 
             this.ValueLocation = new int[Counter][];
@@ -45,9 +45,9 @@ namespace Tag
             }
 
             counter = 0;
-            for (int i = 0; i < BoardSize; i++)
+            for (int i = 0; i < boardSize; i++)
             {
-                for (int j = 0; j < BoardSize; j++)
+                for (int j = 0; j < boardSize; j++)
                 {
                     if (value[counter] > Counter - 1 || value[counter] < 0)
                     {
@@ -69,7 +69,7 @@ namespace Tag
 
         public int Indexer(int I, int J)
         {
-            if (I >= BoardSize || J >= BoardSize || I < 0 || J < 0)
+            if (I >= boardSize || J >= boardSize || I < 0 || J < 0)
             {
                 {
                     throw new ArgumentException();
@@ -98,7 +98,7 @@ namespace Tag
 
             try
             {
-                if (I < BoardSize - 1)
+                if (I < boardSize - 1)
                 {
                     if (GameBoard[I + 1][J] == 0)
                     {
@@ -112,7 +112,7 @@ namespace Tag
                         return;
                     }
                 }
-                if (J < BoardSize - 1)
+                if (J < boardSize - 1)
                 {
                     if (GameBoard[I][J + 1] == 0)
                     {
@@ -167,9 +167,9 @@ namespace Tag
         }
         public void PrintBoard()
         {
-            for (int i = 0; i < BoardSize; i++)
+            for (int i = 0; i < boardSize; i++)
             {
-                for (int j = 0; j < BoardSize; j++)
+                for (int j = 0; j < boardSize; j++)
                 {
                     Console.Write("{0}  ", GameBoard[i][j]);
                 }
