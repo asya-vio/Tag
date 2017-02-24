@@ -8,30 +8,17 @@ namespace Tag
 {
     class Program
     {
-        static int Main()
+
+        static void Main()
         {
-            int counter = 0;
-            Console.WriteLine("Input size of the game");
+         
+            Game Game1 = new Game(0,1,2,3,4,5,6,7,8);
 
-            try
-            {
-                counter = int.Parse(Console.ReadLine());
-                if (counter < 0) throw new ArgumentException();
-            }
-            catch (ArgumentException)
-            {
-                Console.WriteLine("It's not a positive number\n");
-                return Main();
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("It's not a number\n");
-                return Main();
-            }
+            Game1.PrintBoard();
 
+            Game1.Shift(4);
 
-
-            return 0;      
+            Game1.PrintBoard();    
         }
     }
 }
