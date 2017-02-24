@@ -21,7 +21,7 @@ namespace Tag
 
             if (Math.Sqrt(count) % 1 != 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException(); //не квадрат
             }
 
             this.counter = count;
