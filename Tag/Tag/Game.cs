@@ -8,24 +8,24 @@ namespace Tag
 {
     class Game
     {
-        public readonly int Counter; //кол-во ячеек
+        private readonly int counter; //кол-во ячеек
         private readonly int boardSize;
         public List<List<int>> GameBoard;
         public int[][] ValueLocation;
         //I - строка, J - столбец
         public Game(params int[] value)
         {
-            int counter = 0;
+            int count = 0;
             foreach (int val in value)
-                counter++;
+                count++;
 
-            if (Math.Sqrt(counter) % 1 != 0)
+            if (Math.Sqrt(count) % 1 != 0)
             {
                 throw new ArgumentException();
             }
 
-            this.Counter = counter;
-            this.boardSize = (int)Math.Sqrt(Counter);
+            this.counter = count;
+            this.boardSize = (int)Math.Sqrt(counter);
 
             this.GameBoard = new List<List<int>>();
             for (int i = 0; i < boardSize; i++)
@@ -35,34 +35,34 @@ namespace Tag
                 for (int j = 0; j < boardSize; j++)
                     GameBoard[i].Add(-1);
 
-            this.ValueLocation = new int[Counter][];
+            this.ValueLocation = new int[counter][];
 
-            for (int i = 0; i < Counter; i++)
+            for (int i = 0; i < counter; i++)
             {
                 ValueLocation[i] = new int[2];
                 ValueLocation[i][0] = -1;
                 ValueLocation[i][1] = -1;
             }
 
-            counter = 0;
+            count = 0;
             for (int i = 0; i < boardSize; i++)
             {
                 for (int j = 0; j < boardSize; j++)
                 {
-                    if (value[counter] > Counter - 1 || value[counter] < 0)
+                    if (value[count] > counter - 1 || value[count] < 0)
                     {
                         throw new IndexOutOfRangeException(); //недопустимое значение ячейки
                     }
 
-                    if (ValueLocation[value[counter]][0] != -1 && ValueLocation[value[counter]][1] != -1)
+                    if (ValueLocation[value[count]][0] != -1 && ValueLocation[value[count]][1] != -1)
                     {
                         throw new ArgumentException(); //повторяющееся значение ячейки
                     }
 
-                    GameBoard[i][j] = value[counter];
-                    ValueLocation[value[counter]][0] = i; 
-                    ValueLocation[value[counter]][1] = j; 
-                    counter++;
+                    GameBoard[i][j] = value[count];
+                    ValueLocation[value[count]][0] = i; 
+                    ValueLocation[value[count]][1] = j; 
+                    count++;
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace Tag
 
         public void GetLocation(int value, out int I, out int J)
         {
-            if (value > Counter - 1 || value < 0)
+            if (value > counter - 1 || value < 0)
             {
                 throw new ArgumentException();
             }
