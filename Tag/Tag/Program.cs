@@ -47,6 +47,8 @@ namespace Tag
 
             Console.WriteLine("Фишка 15 в положении {0} : {1}", I, J);
 
+            Game1.Shift(3);
+
 
 
 
