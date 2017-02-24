@@ -9,7 +9,7 @@ namespace Tag
     class Game
     {
         public readonly int Counter; //кол-во ячеек
-        public readonly int BoardSize;
+        private readonly int BoardSize;
         public List<List<int>> GameBoard;
         public int[][] ValueLocation;
         //I - строка, J - столбец
@@ -104,6 +104,11 @@ namespace Tag
                     {
                         GameBoard[I + 1][J] = value;
                         GameBoard[I][J] = 0;
+
+                        ValueLocation[0][0] = I;
+                        ValueLocation[0][1] = J;
+
+                        ValueLocation[value][0] = I + 1;
                         return;
                     }
                 }
@@ -113,6 +118,11 @@ namespace Tag
                     {
                         GameBoard[I][J + 1] = value;
                         GameBoard[I][J] = 0;
+
+                        ValueLocation[0][0] = I;
+                        ValueLocation[0][1] = J;
+
+                        ValueLocation[value][1] = J + 1;
                         return;
                     }
                 }
@@ -123,6 +133,11 @@ namespace Tag
                     {
                         GameBoard[I - 1][J] = value;
                         GameBoard[I][J] = 0;
+
+                        ValueLocation[0][0] = I;
+                        ValueLocation[0][1] = J;
+
+                        ValueLocation[value][0] = I - 1;
                         return;
                     }
                 }
@@ -133,6 +148,11 @@ namespace Tag
                     {
                         GameBoard[I][J - 1] = value;
                         GameBoard[I][J] = 0;
+
+                        ValueLocation[0][0] = I;
+                        ValueLocation[0][1] = J;
+
+                        ValueLocation[value][1] = J - 1;
                         return;
                     }
                 }
@@ -151,7 +171,7 @@ namespace Tag
             {
                 for (int j = 0; j < BoardSize; j++)
                 {
-                    Console.Write("{0} ", GameBoard[i][j]);
+                    Console.Write("{0}  ", GameBoard[i][j]);
                 }
                 Console.WriteLine();
             }
