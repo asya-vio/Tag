@@ -11,8 +11,25 @@ namespace Tag
 
         static void Main()
         {
-         
-            Game Game1 = new Game(0,1,2,3,4,5,6,7,8);
+            Game Game1 = null;
+
+            try
+            {
+                Game1 = new Game(0, 1, 2, 3, 4, 5, 6, -7, 8);
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Incorrect arguments");
+                Console.ReadLine();
+                return;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Incorrect value of arguments");
+                Console.ReadLine();
+                return;
+            }
+
 
             Game1.PrintBoard();
 

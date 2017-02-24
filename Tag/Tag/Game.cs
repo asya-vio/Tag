@@ -49,7 +49,7 @@ namespace Tag
             {
                 for (int j = 0; j < BoardSize; j++)
                 {
-                    if (value[counter] > Counter - 1)
+                    if (value[counter] > Counter - 1 || value[counter] < 0)
                     {
                         throw new IndexOutOfRangeException(); //недопустимое значение ячейки
                     }
