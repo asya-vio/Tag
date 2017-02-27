@@ -11,7 +11,7 @@ namespace Tag
         readonly int counter; //кол-во ячеек
         readonly int boardSize;
         public List<List<int>> GameBoard;
-        public int[,] ValueLocation;
+        public Point[] ValueLocation;
         //I - строка, J - столбец
         public Game(params int[] value)
         {
@@ -40,19 +40,18 @@ namespace Tag
 
             this.GameBoard = new List<List<int>>();
             for (int i = 0; i < boardSize; i++)
+            {
                 GameBoard.Add(new List<int>());
-
+            }
+                
             for (int i = 0; i < boardSize; i++)
                 for (int j = 0; j < boardSize; j++)
                     GameBoard[i].Add(-1);
 
-            this.ValueLocation = new int[counter,2];
+            this.ValueLocation = new Point[counter];
 
             for (int i = 0; i < counter; i++)
-            {
-                ValueLocation[i,0] = -1;
-                ValueLocation[i,1] = -1;
-            }
+                ValueLocation[i] = new Point();
 
             int count = 0;
             for (int i = 0; i < boardSize; i++)
@@ -60,18 +59,19 @@ namespace Tag
                 for (int j = 0; j < boardSize; j++)
                 {
 
-                    if (ValueLocation[value[count],0] != -1 && ValueLocation[value[count],1] != -1)
+                    if (ValueLocation[value[count]].I != -1 && ValueLocation[value[count]].J != -1)
                     {
                         throw new ArgumentException("Недопустимо повторение значений");
                     }
 
                     GameBoard[i][j] = value[count];
-                    ValueLocation[value[count],0] = i; 
-                    ValueLocation[value[count],1] = j; 
+                    ValueLocation[value[count]].I = i; 
+                    ValueLocation[value[count]].J = j; 
                     count++;
                 }
             }
         }
+
         public int this[int I, int J]
         {
             get
@@ -90,7 +90,7 @@ namespace Tag
             else return GameBoard[I][J];
         }
 
-        public void GetLocation(int value, out int I, out int J)
+        public Point GetLocation(int value)
         {
             if (value > counter - 1 || value < 0)
             {
@@ -98,16 +98,15 @@ namespace Tag
             }
             else
             {
-                I = ValueLocation[value,0];
-                J = ValueLocation[value,1];
+                return new Point(ValueLocation[value].I, ValueLocation[value].J);
             }
         }
 
         public void Shift(int value)
         {
             int I, J;
-            int step = 0;
-            GetLocation(value, out I, out J);
+            I = GetLocation(value).I;
+            J = GetLocation(value).J;
 
             if (I < boardSize - 1)
             {
@@ -116,10 +115,10 @@ namespace Tag
                     GameBoard[I + 1][J] = value;
                     GameBoard[I][J] = 0;
 
-                    ValueLocation[0, 0] = I;
-                    ValueLocation[0, 1] = J;
+                    ValueLocation[0].I = I;
+                    ValueLocation[0].J = J;
 
-                    ValueLocation[value, 0] = I + 1;
+                    ValueLocation[value].I = I + 1;
                     return;
                 }
             }
@@ -130,10 +129,10 @@ namespace Tag
                     GameBoard[I][J + 1] = value;
                     GameBoard[I][J] = 0;
 
-                    ValueLocation[0, 0] = I;
-                    ValueLocation[0, 1] = J;
+                    ValueLocation[0].I = I;
+                    ValueLocation[0].J = J;
 
-                    ValueLocation[value, 1] = J + 1;
+                    ValueLocation[value].J = J + 1;
                     return;
                 }
             }
@@ -145,10 +144,10 @@ namespace Tag
                     GameBoard[I - 1][J] = value;
                     GameBoard[I][J] = 0;
 
-                    ValueLocation[0, 0] = I;
-                    ValueLocation[0, 1] = J;
+                    ValueLocation[0].I = I;
+                    ValueLocation[0].J = J;
 
-                    ValueLocation[value, 0] = I - 1;
+                    ValueLocation[value].I = I - 1;
                     return;
                 }
             }
@@ -160,10 +159,10 @@ namespace Tag
                     GameBoard[I][J - 1] = value;
                     GameBoard[I][J] = 0;
 
-                    ValueLocation[0, 0] = I;
-                    ValueLocation[0, 1] = J;
+                    ValueLocation[0].I = I;
+                    ValueLocation[0].J = J;
 
-                    ValueLocation[value, 1] = J - 1;
+                    ValueLocation[value].J = J - 1;
                     return;
                 }
             }
