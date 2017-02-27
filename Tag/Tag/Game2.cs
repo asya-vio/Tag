@@ -14,7 +14,7 @@ namespace Tag
         {
             if (Math.Sqrt(counter) % 1 != 0)
             {
-                throw new ArgumentException(); //не квадрат
+                throw new ArgumentException("Количество фишек не дает квадратного поля"); 
             }
 
             this.counter = counter;
@@ -29,6 +29,15 @@ namespace Tag
                     GameBoard[i].Add(-1);
 
 
+            this.ValueLocation = new Point[counter];
+
+            for (int i = 0; i < counter; i++)
+                ValueLocation[i] = new Point();
+
+            for (int i = 0; i < counter - 1; i++)
+            {
+
+            }
 
         }
 

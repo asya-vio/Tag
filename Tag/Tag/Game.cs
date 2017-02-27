@@ -72,23 +72,23 @@ namespace Tag
             }
         }
 
-        public int this[int I, int J]
+        public int this[int I, int J] 
         {
             get
             {
                 return GameBoard[I][J];
             }
         }
-        public int Indexer(int I, int J)
-        {
-            if (I >= boardSize || J >= boardSize || I < 0 || J < 0)
-            {
-                {
-                    throw new ArgumentException("Переданы неверные координаты");
-                }
-            }
-            else return GameBoard[I][J];
-        }
+        //public int Indexer(int I, int J)
+        //{
+        //    if (I >= boardSize || J >= boardSize || I < 0 || J < 0)
+        //    {
+        //        {
+        //            throw new ArgumentException("Переданы неверные координаты");
+        //        }
+        //    }
+        //    else return GameBoard[I][J];
+        //}
 
         public Point GetLocation(int value)
         {
@@ -104,9 +104,8 @@ namespace Tag
 
         public void Shift(int value)
         {
-            int I, J;
-            I = GetLocation(value).I;
-            J = GetLocation(value).J;
+            int I = GetLocation(value).I;
+            int J = GetLocation(value).J;
 
             if (I < boardSize - 1)
             {
@@ -168,6 +167,11 @@ namespace Tag
             }
 
             throw new ArgumentException("Эту ячейку сдвинуть нельзя");
+        }
+
+        public void Shift1(int value)
+        {
+
         }
 
         public bool IsEnd()

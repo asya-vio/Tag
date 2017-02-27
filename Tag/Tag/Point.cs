@@ -9,10 +9,10 @@ namespace Tag
     class Point
     {
         public int I,J;
-        public Point(int X, int Y)
+        public Point(int x, int y)
         {
-            this.I = X;
-            this.J = Y;
+            this.I = x;
+            this.J = y;
         }
         public Point()
         {
