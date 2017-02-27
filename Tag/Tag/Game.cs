@@ -106,6 +106,7 @@ namespace Tag
         public void Shift(int value)
         {
             int I, J;
+            int step = 0;
             GetLocation(value, out I, out J);
 
             if (I < boardSize - 1)
@@ -168,7 +169,6 @@ namespace Tag
             }
 
             throw new ArgumentException("Эту ячейку сдвинуть нельзя");
-
         }
 
         public bool IsEnd()
@@ -191,7 +191,8 @@ namespace Tag
             {
                 for (int j = 0; j < boardSize; j++)
                 {
-                    Console.Write("{0}  ", GameBoard[i][j]);
+                    if (GameBoard[i][j] / 10 > 0) Console.Write("{0} ", GameBoard[i][j]);
+                    else Console.Write("{0}  ", GameBoard[i][j]);
                 }
                 Console.WriteLine();
             }

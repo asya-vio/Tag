@@ -35,13 +35,14 @@ namespace Tag
                 try
                 {
                     Game1.Shift(value);
+                    step++;
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("{0}", ex.Message);
+                    Console.ReadLine();
                 }
 
-                step++;
             }
 
             Console.Clear();
