@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tag
 {
-    class Game
+    public class Game
     {
-        readonly int counter; //кол-во ячеек
-        readonly int boardSize;
+        private readonly int counter; //кол-во ячеек
+        private readonly int boardSize;
         public List<List<int>> GameBoard;
         public Point[] ValueLocation;
         //I - строка, J - столбец
@@ -115,7 +115,7 @@ namespace Tag
             if (I > 0) pArr[2] = new Point(I - 1, J);
                 else pArr[2] = new Point(I, J);
             if (J > 0) pArr[3] = new Point(I, J - 1);
-                else pArr[3] = new Point(I, J);
+            else pArr[3] = new Point(I, J);
 
             for (int i = 0; i < pArr.Length; i++ )
             {

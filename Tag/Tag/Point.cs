@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tag
 {
-    class Point
+    public class Point
     {
         public int I,J;
         public Point(int x, int y)
