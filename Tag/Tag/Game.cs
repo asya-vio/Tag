@@ -107,66 +107,34 @@ namespace Tag
             int I = GetLocation(value).I;
             int J = GetLocation(value).J;
 
-            if (I < boardSize - 1)
+            Point[] pArr = new Point[4];
+            if (I < boardSize - 1) pArr[0] = new Point(I + 1, J);
+            else pArr[0] = new Point(I, J);
+            if (J < boardSize - 1) pArr[1] = new Point(I, J + 1);
+            else pArr[1] = new Point(I, J);
+            if (I > 0) pArr[2] = new Point(I - 1, J);
+            else pArr[2] = new Point(I, J);
+            if (J > 0) pArr[3] = new Point(I, J - 1);
+            else pArr[3] = new Point(I, J);
+
+            for (int i = 0; i < pArr.Length; i++ )
             {
-                if (GameBoard[I + 1][J] == 0)
+                if (GameBoard[pArr[i].I][pArr[i].J] == 0)
                 {
-                    GameBoard[I + 1][J] = value;
+                    GameBoard[pArr[i].I][pArr[i].J] = value;
                     GameBoard[I][J] = 0;
 
                     ValueLocation[0].I = I;
                     ValueLocation[0].J = J;
 
-                    ValueLocation[value].I = I + 1;
-                    return;
-                }
-            }
-            if (J < boardSize - 1)
-            {
-                if (GameBoard[I][J + 1] == 0)
-                {
-                    GameBoard[I][J + 1] = value;
-                    GameBoard[I][J] = 0;
+                    ValueLocation[value].I = pArr[i].I;
+                    ValueLocation[value].J = pArr[i].J;
 
-                    ValueLocation[0].I = I;
-                    ValueLocation[0].J = J;
-
-                    ValueLocation[value].J = J + 1;
                     return;
                 }
             }
 
-            if (I > 0)
-            {
-                if (GameBoard[I - 1][J] == 0)
-                {
-                    GameBoard[I - 1][J] = value;
-                    GameBoard[I][J] = 0;
-
-                    ValueLocation[0].I = I;
-                    ValueLocation[0].J = J;
-
-                    ValueLocation[value].I = I - 1;
-                    return;
-                }
-            }
-
-            if (J > 0)
-            {
-                if (GameBoard[I][J - 1] == 0)
-                {
-                    GameBoard[I][J - 1] = value;
-                    GameBoard[I][J] = 0;
-
-                    ValueLocation[0].I = I;
-                    ValueLocation[0].J = J;
-
-                    ValueLocation[value].J = J - 1;
-                    return;
-                }
-            }
-
-            throw new ArgumentException("Эту ячейку сдвинуть нельзя");
+                throw new ArgumentException("Эту ячейку сдвинуть нельзя");
         }
 
         public void Shift1(int value)
