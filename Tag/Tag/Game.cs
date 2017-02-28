@@ -109,13 +109,13 @@ namespace Tag
 
             Point[] pArr = new Point[4];
             if (I < boardSize - 1) pArr[0] = new Point(I + 1, J);
-            else pArr[0] = new Point(I, J);
+                else pArr[0] = new Point(I, J);
             if (J < boardSize - 1) pArr[1] = new Point(I, J + 1);
-            else pArr[1] = new Point(I, J);
+                else pArr[1] = new Point(I, J);
             if (I > 0) pArr[2] = new Point(I - 1, J);
-            else pArr[2] = new Point(I, J);
+                else pArr[2] = new Point(I, J);
             if (J > 0) pArr[3] = new Point(I, J - 1);
-            else pArr[3] = new Point(I, J);
+                else pArr[3] = new Point(I, J);
 
             for (int i = 0; i < pArr.Length; i++ )
             {
