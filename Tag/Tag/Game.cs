@@ -50,7 +50,7 @@ namespace Tag
             {
                 for (int j = 0; j < boardSize; j++)
                 {
-                    GameBoard[i, j] = value[count];
+                    this[i, j] = value[count];
                     ValueLocation[value[count]] = new Point(i, j);
                     count++;
                 }
@@ -111,7 +111,38 @@ namespace Tag
             else 
             throw new ArgumentException("Эту ячейку сдвинуть нельзя");
         }
+        public static Game ReadCSV(string filePath)
+        {
+            List<int[]> masList = new List<int[]>();
 
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var strMas = line.Split(';');
+                    int[] intMas = new int[strMas.Length];
+                    for (int i = 0; i < strMas.Length; i++)
+                    {
+                        intMas[i] = int.Parse(strMas[i]);
+                    }
+                    masList.Add(intMas);
+                }
+            }
+            int[] gameArr = new int[masList.Count * masList.Count];
+            int cnt = 0;
+            for (int i = 0; i < masList.Count; i++)
+            {
+                for (int j = 0; j < masList.Count; j++)
+                {
+                    gameArr[cnt] = masList[i][j];
+                    cnt++;
+                }
+            }
+
+            return new Game(gameArr);
+
+        }
         public bool IsEnd()
         {
             for (int i = 0; i < boardSize; i++)
@@ -126,38 +157,5 @@ namespace Tag
             return true;
         }
 
-
-        public static Game ReadCSV(string filePath)
-        {
-            List<int[]> listMas = new List<int[]>();
-
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string text;
-                while ((text = reader.ReadLine()) != null)
-                {
-                    var StrMas = text.Split(';');
-                    int[] IntMas = new int[StrMas.Length];
-                    for (int i = 0; i < StrMas.Length; i++)
-                    {
-                        IntMas[i] = int.Parse(StrMas[i]);
-                    }
-                    listMas.Add(IntMas);
-                }
-            }
-            int[] gameArr = new int[listMas.Count * listMas.Count];
-            int cnt = 0;
-            for (int i = 0; i < listMas.Count; i++)
-            {
-                for (int j = 0; j < listMas.Count; j++)
-                {
-                    gameArr[cnt] = listMas[i][j];
-                    cnt++;
-                }
-            }
-
-            return new Game(gameArr);
-
-        }
     }
 }
