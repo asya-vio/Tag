@@ -51,12 +51,7 @@ namespace Tag
             Console.WriteLine("Игра завершена за {0} шагов", step);
             Console.ReadLine();
 
-            Console.WriteLine("Координаты фишки 15 I = {0}, J = {1}",Game1.GetLocation(15).I, Game1.GetLocation(15).J);
-
-            //Game2 g2 = new Game2(16);
-
-            //g2.PrintBoard();
-            //Console.ReadLine();
+            Console.WriteLine("Координаты фишки 15 I = {0}, J = {1} \n",Game1.GetLocation(15).I, Game1.GetLocation(15).J);
         }
     }
 }

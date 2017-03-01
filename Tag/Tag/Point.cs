@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tag
 {
-    public class Point
+    class Point
     {
-        public int I,J;
+        public int I {get; set;}
+        public int J {get; set;}
         public Point(int x, int y)
         {
             this.I = x;
