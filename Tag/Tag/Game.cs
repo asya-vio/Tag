@@ -149,7 +149,7 @@ namespace Tag
             {
                 for (int j = 0; j < boardSize; j++)
                 {
-                    if (GameBoard[i, j] != i * boardSize + (j + 1) && (i != boardSize - 1 || j != boardSize - 1))
+                    if (this[i, j] != i * boardSize + (j + 1) && (i != boardSize - 1 || j != boardSize - 1))
 
                         return false;
                 }
