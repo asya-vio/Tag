@@ -77,7 +77,7 @@ namespace Tag
             }
             else
             {
-                return new Point(ValueLocation[value].I, ValueLocation[value].J);
+                return ValueLocation[value];
             }
         }
         private void Swap(int val1, int val2 = 0)
